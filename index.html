@@ -11,10 +11,13 @@
     </head>
     <body>
         <script>
+            var circles = [];
+
             function createCircle(x, y) {
               var colors = ["#FF0000", "#00FF00", "#0000FF", "#FFFF00", "#FF00FF", "#00FFFF"];
               var randomColor = colors[Math.floor(Math.random() * colors.length)];
               var div = document.createElement("div");
+              div.classList.add("circle");
               div.style.position = "absolute";
               div.style.left = (x - 200) + "px";
               div.style.top = (y - 200) + "px";
@@ -23,6 +26,7 @@
               div.style.borderRadius = "50%";
               div.style.backgroundColor = randomColor;
               document.body.appendChild(div);
+              circles.push(div);
             }
 
             document.addEventListener("mousemove", function(event) {
@@ -35,6 +39,14 @@
               var x = event.touches[0].pageX;
               var y = event.touches[0].pageY;
               createCircle(x, y);
+            });
+
+            document.addEventListener("click", function() {
+                var colors = ["#FF0000", "#00FF00", "#0000FF", "#FFFF00", "#FF00FF", "#00FFFF"];
+                for (var i = 0; i < circles.length; i++) {
+                    var randomColor = colors[Math.floor(Math.random() * colors.length)];
+                    circles[i].style.backgroundColor = randomColor;
+                }
             });
         </script>
     </body>
