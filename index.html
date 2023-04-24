@@ -11,20 +11,30 @@
     </head>
     <body>
         <script>
+            function createCircle(x, y) {
+              var colors = ["#FF0000", "#00FF00", "#0000FF", "#FFFF00", "#FF00FF", "#00FFFF"];
+              var randomColor = colors[Math.floor(Math.random() * colors.length)];
+              var div = document.createElement("div");
+              div.style.position = "absolute";
+              div.style.left = (x - 200) + "px";
+              div.style.top = (y - 200) + "px";
+              div.style.width = "400px";
+              div.style.height = "400px";
+              div.style.borderRadius = "50%";
+              div.style.backgroundColor = randomColor;
+              document.body.appendChild(div);
+            }
+
             document.addEventListener("mousemove", function(event) {
-            var x = event.pageX;
-            var y = event.pageY;
-            var colors = ["#FF0000", "#00FF00", "#0000FF", "#FFFF00", "#FF00FF", "#00FFFF"];
-            var randomColor = colors[Math.floor(Math.random() * colors.length)];
-            var div = document.createElement("div");
-            div.style.position = "absolute";
-            div.style.left = (x - 200) + "px";
-            div.style.top = (y - 200) + "px";
-            div.style.width = "400px";
-            div.style.height = "400px";
-            div.style.borderRadius = "50%";
-            div.style.backgroundColor = randomColor;
-            document.body.appendChild(div);
+              var x = event.pageX;
+              var y = event.pageY;
+              createCircle(x, y);
+            });
+
+            document.addEventListener("touchmove", function(event) {
+              var x = event.touches[0].pageX;
+              var y = event.touches[0].pageY;
+              createCircle(x, y);
             });
         </script>
     </body>
